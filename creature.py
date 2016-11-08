@@ -5,7 +5,7 @@ class Creature(object):
 	experience = 0
 	hp = 100
 	moveScope = 1
-    visionScope = 2
+	visionScope = 2
 
 	def __init__(self,row,col,ch,cw):
 		self.row = row
