@@ -31,5 +31,5 @@ class World(object):
 				#self.creatureNumAtPt[row,col] = 0
 
 	def addCreature(self,row,col):
-		c = Creature(row,col,self.cellHeight,self.cellWidth,self.canHeight,self.canWidth,self.space)
+		c = Creature(row,col,self.cellHeight,self.cellWidth,self.canHeight,self.canWidth,self.world,self.space)
 		self.creatures[row,col] = c

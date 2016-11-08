@@ -18,14 +18,16 @@ class Creature(object):
 	       wh: world height
 	       ww: world width
 	       canvas: canvas of the world
+	       w: world (use to call tkinter methods)
 	"""
-	def __init__(self,row,col,ch,cw,wh,ww,canvas):
+	def __init__(self,row,col,ch,cw,wh,ww,w,canvas):
 		self.row = row
 		self.col = col
 		self.cellHeight = ch
 		self.cellWidth = cw
 		self.worldHeight = wh
 		self.worldWidth = ww
+		self.world = w
 		self.x1 = self.col * self.cellWidth + self.cellWidth/12
 		self.y1 = self.row * self.cellHeight + self.cellHeight/12
 		self.x2 = self.x1 + 10/12 * self.cellWidth
@@ -66,8 +68,6 @@ class Creature(object):
 		  self.y2 = self.y2 + verticalMove * self.cellHeight
 		  canvas.coords(self.creature,self.x1,self.y1,self.x2,self.y2)
 
-		  print(canvas.winfo_width())
-
 		  if self.x1 < 0 or self.y1 < 0 or self.x2 > self.worldWidth or self.y2 > self.worldHeight:
 		  	self.x1 = x1old
 		  	self.y1 = y1old
@@ -75,4 +75,4 @@ class Creature(object):
 		  	self.y2 = y2old
 		  else:
 		  	break
-		#self.after(delay, lambda: self.move(delay,canvas)) 	
+		self.world.after(delay, lambda: self.move(delay,canvas)) 	
