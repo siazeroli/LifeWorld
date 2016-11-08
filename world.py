@@ -45,15 +45,26 @@ class World(object):
 			if self.creatures[n] != 0 and self.creatures[n].isAlive() == 0:
 				self.creatureNum -= 1
 				print("creature " + self.creatures[n].name + " was dead")
-				#del self.creatures[n]
 				self.creatures[n] = 0
 				self.names[n] = 0
 		bornProb = random.random()
 		bornThreshold = random.random()
 
 		if self.creatureNum < self.maxCreatureNum and bornProb > bornThreshold:
+			# In version 1.0, new-born creature cannot be at occupied location (no birth competition now)
+			rowList = []
+			colList = []
+			for n in self.creatures:
+				if self.creatures[n] != 0:
+				  rowList.append(self.creatures[n].row)
+				  colList.append(self.creatures[n].col)
 			randRow = random.randint(0,self.rows-1)
 			randCol = random.randint(0,self.cols-1)
+			while randRow in rowList and randCol in colList:
+				print("Location is occupied. Please rechoose new location for new-born creature")
+				randRow = random.randint(0,self.rows-1)
+				randCol = random.randint(0,self.cols-1)
+
 			for key in self.names:
 				if self.names[key] == 0:
 					curName = key
@@ -64,8 +75,10 @@ class World(object):
 			curCreature.move(1000,self.space)
 			print("Creature nums: " + str(self.creatureNum))
 			print(curName + " is born")
+
 		if self.creatureNum == self.maxCreatureNum:
 			print("lives full")
+
 		self.world.after(delay, lambda: self.runWorld(delay))
 
 

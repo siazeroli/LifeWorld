@@ -40,7 +40,7 @@ class Creature(object):
 
 	A main activation function for the creature when it is alive until it is dead.
 
-    In version 1.1, move strategy is random by generator
+    In version 1.0, move strategy is random by generator
 
     More higher-level tech (Machine learning methods) will be used for later versions.
     """
