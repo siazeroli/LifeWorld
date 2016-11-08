@@ -20,7 +20,8 @@ class Creature(object):
 	       canvas: canvas of the world
 	       w: world (use to call tkinter methods)
 	"""
-	def __init__(self,row,col,ch,cw,wh,ww,w,canvas):
+	def __init__(self,name,row,col,ch,cw,wh,ww,w,canvas):
+		self.name = name
 		self.row = row
 		self.col = col
 		self.cellHeight = ch
@@ -78,8 +79,10 @@ class Creature(object):
 		  	self.y1 = y1old
 		  	self.x2 = x2old
 		  	self.y2 = y2old
-		  	self.hp -= 10
+		  	self.hp -= 1
 		  else:
+		  	self.row = self.row + horizontalMove * self.moveScope
+		  	self.col = self.col + verticalMove * self.moveScope
 		  	canvas.coords(self.creature,self.x1,self.y1,self.x2,self.y2)
 		  	self.levelUp()
 		  	break
