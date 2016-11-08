@@ -79,7 +79,7 @@ class Creature(object):
 		  	self.y1 = y1old
 		  	self.x2 = x2old
 		  	self.y2 = y2old
-		  	self.hp -= 1
+		  	self.hp -= 10
 		  else:
 		  	self.row = self.row + horizontalMove * self.moveScope
 		  	self.col = self.col + verticalMove * self.moveScope

@@ -6,7 +6,11 @@ class World(object):
 	canHeight = 700
 	canWidth = 700
 	creatureNum = 0
+	maxCreatureNum = 10
 	names = {'a': 0, 'b': 0, 'c': 0, 'd': 0, 'e': 0, 'f': 0, 'g': 0, 'h': 0, 'i': 0, 'j': 0}
+	creatures = {'a': 0, 'b': 0, 'c': 0, 'd': 0, 'e': 0, 'f': 0, 'g': 0, 'h': 0, 'i': 0, 'j': 0}
+	month = 0
+	year = 1
 
 	def __init__(self,rows,cols):
 		self.rows = rows
@@ -32,10 +36,22 @@ class World(object):
 				self.cells[row,col] = self.space.create_rectangle(x1,y1,x2,y2)
 
 	def runWorld(self,delay):
+		self.month += 1
+		if self.month % 13 == 0:
+			self.year += 1
+			self.month = 1
+		print("Current year/month: " + str(self.year) + "/" + str(self.month))
+		for n in self.creatures:
+			if self.creatures[n] != 0 and self.creatures[n].isAlive() == 0:
+				self.creatureNum -= 1
+				print("creature " + self.creatures[n].name + " was dead")
+				#del self.creatures[n]
+				self.creatures[n] = 0
+				self.names[n] = 0
 		bornProb = random.random()
 		bornThreshold = random.random()
 
-		if self.creatureNum < 10 and bornProb > bornThreshold:
+		if self.creatureNum < self.maxCreatureNum and bornProb > bornThreshold:
 			randRow = random.randint(0,self.rows-1)
 			randCol = random.randint(0,self.cols-1)
 			for key in self.names:
@@ -43,9 +59,13 @@ class World(object):
 					curName = key
 					self.names[key] = 1
 					break
-			print(curName)
 			curCreature = self.addCreature(randRow,randCol,curName)
+			self.creatures[curName] = curCreature
 			curCreature.move(1000,self.space)
+			print("Creature nums: " + str(self.creatureNum))
+			print(curName + " is born")
+		if self.creatureNum == self.maxCreatureNum:
+			print("lives full")
 		self.world.after(delay, lambda: self.runWorld(delay))
 
 
