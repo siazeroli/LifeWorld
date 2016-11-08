@@ -30,8 +30,6 @@ class World(object):
 				self.cells[row,col] = self.space.create_rectangle(x1,y1,x2,y2)
 				#self.creatureNumAtPt[row,col] = 0
 
-	def addCreature(self):
-		for row in range(self.rows):
-			for col in range(self.cols):
-				c = Creature(row,col,self.cellHeight,self.cellWidth,self.space)
-				self.creatures[row,col] = c
+	def addCreature(self,row,col):
+		c = Creature(row,col,self.cellHeight,self.cellWidth,self.space)
+		self.creatures[row,col] = c
