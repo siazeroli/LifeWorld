@@ -1,0 +1,207 @@
+Current year/month: 1/1
+Creature nums: 1
+i is born
+Current year/month: 1/2
+Creature nums: 2
+h is born
+Current year/month: 1/3
+Creature nums: 3
+a is born
+Current year/month: 1/4
+Current year/month: 1/5
+Creature nums: 4
+c is born
+Current year/month: 1/6
+Creature nums: 5
+d is born
+Current year/month: 1/7
+Creature nums: 6
+f is born
+Current year/month: 1/8
+Creature nums: 7
+j is born
+Current year/month: 1/9
+Creature nums: 8
+e is born
+Current year/month: 1/10
+Current year/month: 1/11
+Current year/month: 1/12
+Creature nums: 9
+b is born
+Current year/month: 2/1
+Current year/month: 2/2
+Creature nums: 10
+g is born
+lives full
+Current year/month: 2/3
+lives full
+Current year/month: 2/4
+lives full
+Current year/month: 2/5
+lives full
+Current year/month: 2/6
+lives full
+Current year/month: 2/7
+lives full
+Current year/month: 2/8
+creature h was dead
+Creature nums: 10
+h is born
+lives full
+Current year/month: 2/9
+lives full
+Current year/month: 2/10
+lives full
+Current year/month: 2/11
+lives full
+Current year/month: 2/12
+lives full
+Current year/month: 3/1
+lives full
+Current year/month: 3/2
+lives full
+Current year/month: 3/3
+lives full
+Current year/month: 3/4
+lives full
+Current year/month: 3/5
+lives full
+Current year/month: 3/6
+lives full
+Current year/month: 3/7
+lives full
+Current year/month: 3/8
+lives full
+Current year/month: 3/9
+lives full
+Current year/month: 3/10
+lives full
+Current year/month: 3/11
+lives full
+Current year/month: 3/12
+lives full
+Current year/month: 4/1
+creature d was dead
+Creature nums: 10
+d is born
+lives full
+Current year/month: 4/2
+lives full
+Current year/month: 4/3
+creature a was dead
+Current year/month: 4/4
+Current year/month: 4/5
+creature i was dead
+Creature nums: 9
+i is born
+Current year/month: 4/6
+creature c was dead
+Current year/month: 4/7
+Current year/month: 4/8
+creature f was dead
+Current year/month: 4/9
+Current year/month: 4/10
+Current year/month: 4/11
+Creature nums: 8
+a is born
+Current year/month: 4/12
+Creature nums: 9
+c is born
+Current year/month: 5/1
+Creature nums: 10
+f is born
+lives full
+Current year/month: 5/2
+lives full
+Current year/month: 5/3
+lives full
+Current year/month: 5/4
+lives full
+Current year/month: 5/5
+lives full
+Current year/month: 5/6
+lives full
+Current year/month: 5/7
+lives full
+Current year/month: 5/8
+creature j was dead
+Current year/month: 5/9
+Creature nums: 10
+j is born
+lives full
+Current year/month: 5/10
+lives full
+Current year/month: 5/11
+lives full
+Current year/month: 5/12
+lives full
+Current year/month: 6/1
+lives full
+Current year/month: 6/2
+lives full
+Current year/month: 6/3
+lives full
+Current year/month: 6/4
+lives full
+Current year/month: 6/5
+creature e was dead
+Creature nums: 10
+e is born
+lives full
+Current year/month: 6/6
+lives full
+Current year/month: 6/7
+lives full
+Current year/month: 6/8
+lives full
+Current year/month: 6/9
+lives full
+Current year/month: 6/10
+lives full
+Current year/month: 6/11
+lives full
+Current year/month: 6/12
+creature c was dead
+Current year/month: 7/1
+Current year/month: 7/2
+Current year/month: 7/3
+Current year/month: 7/4
+Creature nums: 10
+c is born
+lives full
+Current year/month: 7/5
+lives full
+Current year/month: 7/6
+lives full
+Current year/month: 7/7
+lives full
+Current year/month: 7/8
+creature a was dead
+Current year/month: 7/9
+Current year/month: 7/10
+Current year/month: 7/11
+Creature nums: 10
+a is born
+lives full
+Current year/month: 7/12
+lives full
+Current year/month: 8/1
+lives full
+Current year/month: 8/2
+lives full
+Current year/month: 8/3
+lives full
+Current year/month: 8/4
+lives full
+Current year/month: 8/5
+lives full
+Current year/month: 8/6
+lives full
+Current year/month: 8/7
+lives full
+Current year/month: 8/8
+lives full
+Current year/month: 8/9
+lives full
+Current year/month: 8/10
+lives full

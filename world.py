@@ -1,6 +1,7 @@
 import tkinter as tk
 import random
 from creature import Creature
+from resource import Resource
 
 class World(object):
 	canHeight = 700
@@ -88,3 +89,7 @@ class World(object):
 		c = Creature(name,row,col,self.cellHeight,self.cellWidth,self.canHeight,self.canWidth,self.world,self.space)
 		self.creatureNum += 1
 		return c
+	
+	def addResource(self,row,col):
+		r = Resource(row,col,self.cellHeight,self.cellWidth,self.canHeight,self.canWidth,self.world,self.space)
+		return r

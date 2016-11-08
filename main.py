@@ -1,4 +1,5 @@
 from world import World
+from resource import Resource
 
 def main():
 	newWorld = World(100,100)
