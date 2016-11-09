@@ -96,11 +96,17 @@ class Creature(object):
 		self.world.after(delay, lambda: self.move(delay,canvas))
 
 	"""	
+	"""
 	def view(self,clist,rlist):
 		
 		for ckey in clist:
-			if clist[ckey] != 0 and clist[ckey].isAlive() == 1 and self.name != clist[ckey].name:
-	"""
+			if clist[ckey] != 0 and clist[ckey].isAlive() == 1 and \
+			   self.name != clist[ckey].name and \
+			   abs(clist[ckey].row - self.row) > 0 and \
+			   abs(clist[ckey].row - self.row) <= self.visionScope and \
+			   abs(clist[ckey].col - self.col) > 0 and \
+			   abs(clist[ckey].col - self.col) <= self.visionScope:
+			     return
 
 
 
