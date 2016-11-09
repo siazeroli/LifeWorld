@@ -48,7 +48,7 @@ class Creature(object):
 		while True:
 		  if self.isAlive() == 0:
 		  	canvas.delete(self.creature)
-		  	break
+		  	return
 		  horizontalRandChoice = random.randint(1,10)
 		  verticalRandChoice = random.randint(1,10)
 		  randScope = random.randint(1,self.moveScope)
@@ -75,17 +75,22 @@ class Creature(object):
 		  self.y2 = self.y2 + verticalMove * self.moveScope * self.cellHeight
 
 		  if self.x1 < 0 or self.y1 < 0 or self.x2 > self.worldWidth or self.y2 > self.worldHeight:
-		  	self.x1 = x1old
-		  	self.y1 = y1old
-		  	self.x2 = x2old
-		  	self.y2 = y2old
-		  	self.hp -= 10
+			  self.x1 = x1old
+			  self.y1 = y1old
+			  self.x2 = x2old
+			  self.y2 = y2old
+			  self.hp -= 10
+			  if self.isAlive() == 0:
+				  print("Creature " + self.name + " died because of escaping from the world")
 		  else:
-		  	self.row = self.row + horizontalMove * self.moveScope
-		  	self.col = self.col + verticalMove * self.moveScope
-		  	canvas.coords(self.creature,self.x1,self.y1,self.x2,self.y2)
-		  	self.levelUp()
-		  	break
+			  self.row = self.row + horizontalMove * self.moveScope
+			  self.col = self.col + verticalMove * self.moveScope
+			  canvas.coords(self.creature,self.x1,self.y1,self.x2,self.y2)
+			  self.hp -= 5
+			  if self.isAlive() == 0:
+				  print("Creature " + self.name + " died on the way to move")
+			  self.levelUp()
+			  break
 		self.world.after(delay, lambda: self.move(delay,canvas)) 
 
 	def levelUp(self):

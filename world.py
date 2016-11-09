@@ -29,7 +29,6 @@ class World(object):
 		self.space.pack()
 
 		self.cells = {}
-		#self.creatureNumAtPt = {}
 
 		for row in range(self.rows):
 			for col in range(self.cols):
@@ -101,7 +100,6 @@ class World(object):
 		for n in self.creatures:
 			if self.creatures[n] != 0 and self.creatures[n].isAlive() == 0:
 				self.creatureNum -= 1
-				print("creature " + self.creatures[n].name + " was dead")
 				self.creatures[n] = 0
 				self.names[n] = 0
 
