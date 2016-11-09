@@ -40,6 +40,13 @@ class World(object):
 
 	def runWorld(self,delay):
 
+		# Count time
+		self.month += 1
+		if self.month % 13 == 0:
+			self.year += 1
+			self.month = 1
+		print("\nCurrent year/month: " + str(self.year) + "/" + str(self.month))
+
         # Detect locations of all creatures and resources in the world
 		creatureRowList = []
 		creatureColList = []
@@ -47,6 +54,14 @@ class World(object):
 		resourceColList = []
 
 		for n in self.creatures:
+
+			# Detect the dead creature from all current creature in the world
+			if self.creatures[n] != 0 and self.creatures[n].isAlive() == 0:
+				self.creatureNum -= 1
+				self.creatures[n] = 0
+				self.names[n] = 0
+				continue
+
 			if self.creatures[n] != 0:
 				creatureRowList.append(self.creatures[n].row)
 				creatureColList.append(self.creatures[n].col)
@@ -56,59 +71,57 @@ class World(object):
 				resourceRowList.append(self.resources[n].row)
 				resourceColList.append(self.resources[n].col)
 
-		# Count time
-		self.month += 1
-		if self.month % 13 == 0:
-			self.year += 1
-			self.month = 1
-			
-			"""
-			Release resource at a random location of the world each year if total number of
-			resources are not larger than the allowable amount.
-			In version 1.0, each resource cannot be released at occupied location.
-			"""
-			if self.resourceNum < self.maxResourceNum:
+                # Decrease the duration of each resource at beginning of each year
+				if self.year > 2 and self.month == 1:
+					self.resources[n].existYear -= 1
 
-				# Randomize location for new resource at non-occupied location
-				randResourceRow = random.randint(0,self.rows-1)
-				randResourceCol = random.randint(0,self.cols-1)
+                # Detect over-duration resources and delete
+				if self.resources[n].isExist() == 0:
+					print("Resource at (" + str(self.resources[n].row+1) + \
+					 "," + str(self.resources[n].col+1) + ") exceeds the duration. Removed")
+					self.space.delete(self.resources[n].resource)
+					self.resourceNum -= 1
+					self.resources[n] = 0
 
-				while randResourceRow in creatureRowList and \
-				      randResourceRow in resourceRowList and \
-					  randResourceCol in creatureColList and \
-					  randResourceCol in resourceColList:
-					  print("Location is occupied. Please rechoose new location for new resource")
-					  randResourceRow = random.randint(0,self.rows-1)
-					  randResourceCol = random.randint(0,self.cols-1)
+		"""
+		Release resource at a random location of the world each year if total number of
+		resources are not larger than the allowable amount.
+		In version 1.0, each resource cannot be released at occupied location.
+		"""
+		if self.resourceNum < self.maxResourceNum and self.month == 1 and self.year > 1:
 
-				curResource = self.addResource(randResourceRow,randResourceCol)
+			# Randomize location for new resource at non-occupied location
+			randResourceRow = random.randint(0,self.rows-1)
+			randResourceCol = random.randint(0,self.cols-1)
 
-				for key in self.resources:
-					if self.resources[key] == 0:
-						self.resources[key] = curResource
-						break
+			while randResourceRow in creatureRowList and \
+				  randResourceRow in resourceRowList and \
+				  randResourceCol in creatureColList and \
+				  randResourceCol in resourceColList:
+					print("Location is occupied. Please rechoose new location for new resource")
+					randResourceRow = random.randint(0,self.rows-1)
+					randResourceCol = random.randint(0,self.cols-1)
+
+			curResource = self.addResource(randResourceRow,randResourceCol)
+
+			for key in self.resources:
+				if self.resources[key] == 0:
+					self.resources[key] = curResource
+					break
 				
-				print("Resource nums: " + str(self.resourceNum))
-				print("New Resource is release at (" + str(randResourceRow+1) + "," + str(randResourceCol+1) + ")")
-			else:
-				print("Cannot release more than " + str(self.maxResourceNum) + " resources.")
+			print("Resource nums: " + str(self.resourceNum))
+			print("New Resource is released at (" + str(randResourceRow+1) + "," + str(randResourceCol+1) + ")")
+		elif self.resourceNum >= self.maxResourceNum and self.month == 1 and self.year != 1:
+			print("Cannot release more than " + str(self.maxResourceNum) + " resources.")
 			
-
-		print("\nCurrent year/month: " + str(self.year) + "/" + str(self.month))
-
-		# Detect the dead creature from all current creature in the world	
-		for n in self.creatures:
-			if self.creatures[n] != 0 and self.creatures[n].isAlive() == 0:
-				self.creatureNum -= 1
-				self.creatures[n] = 0
-				self.names[n] = 0
-
-	    # Randomize the born probability for new-born creature
-		# In version 1.0, each month can have only one new-born creature
+		"""
+		Create new-born creature when creatures are not full and born prob is less than threshold
+		In version 1.0, each month can have only one new-born creature
+		"""
+		# Randomize the born probability for new-born creature
 		bornProb = random.random()
 		bornThreshold = random.random()
 
-        # Create new-born creature when creatures are not full and born prob is less than threshold
 		if self.creatureNum < self.maxCreatureNum and bornProb > bornThreshold:
 
             # Randomize location for new-born creature at non-occupied location
