@@ -3,7 +3,7 @@ import random
 
 class Resource(object):
 
-	existYear = 5
+	existYear = 15
 
 	def __init__(self,row,col,ch,cw,wh,ww,w,canvas):
 		self.hp = random.randint(10,30)

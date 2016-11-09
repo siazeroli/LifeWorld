@@ -4,15 +4,17 @@ from creature import Creature
 from resource import Resource
 
 class World(object):
-	canHeight = 700
-	canWidth = 700
+	canHeight = 1000
+	canWidth = 1000
 	creatureNum = 0
-	maxCreatureNum = 10
+	maxCreatureNum = 20
 	resourceNum = 0
-	maxResourceNum = 3
-	names = {'a': 0, 'b': 0, 'c': 0, 'd': 0, 'e': 0, 'f': 0, 'g': 0, 'h': 0, 'i': 0, 'j': 0}
-	creatures = {'a': 0, 'b': 0, 'c': 0, 'd': 0, 'e': 0, 'f': 0, 'g': 0, 'h': 0, 'i': 0, 'j': 0}
-	resources = {1:0,2:0,3:0}
+	maxResourceNum = 10
+	names = {'a': 0, 'b': 0, 'c': 0, 'd': 0, 'e': 0, 'f': 0, 'g': 0, 'h': 0, 'i': 0, 'j': 0,\
+	         'k': 0, 'l': 0, 'm': 0, 'n': 0, 'o': 0, 'p': 0, 'q': 0, 'r': 0, 's': 0 ,'t': 0}
+	creatures = {'a': 0, 'b': 0, 'c': 0, 'd': 0, 'e': 0, 'f': 0, 'g': 0, 'h': 0, 'i': 0, 'j': 0, \
+	             'k': 0, 'l': 0, 'm': 0, 'n': 0, 'o': 0, 'p': 0, 'q': 0, 'r': 0, 's': 0 ,'t': 0}
+	resources = {1:0,2:0,3:0,4:0,5:0,6:0,7:0,8:0,9:0,10:0}
 	month = 0
 	year = 1
 
@@ -67,21 +69,23 @@ class World(object):
 				creatureColList.append(self.creatures[n].col)
 
 		for n in self.resources:
+
+			# Decrease the duration of each resource at beginning of each year
+			if self.resources[n] != 0 and self.year > 2 and self.month == 1:
+				self.resources[n].existYear -= 1
+				
+			# Detect over-duration resources and delete
+			if self.resources[n] != 0 and self.resources[n].isExist() == 0:
+				print("Resource at (" + str(self.resources[n].row+1) + \
+					  "," + str(self.resources[n].col+1) + ") exceeds the duration. Removed")
+				self.space.delete(self.resources[n].resource)
+				self.resourceNum -= 1
+				self.resources[n] = 0
+				continue
+
 			if self.resources[n] != 0:
 				resourceRowList.append(self.resources[n].row)
 				resourceColList.append(self.resources[n].col)
-
-                # Decrease the duration of each resource at beginning of each year
-				if self.year > 2 and self.month == 1:
-					self.resources[n].existYear -= 1
-
-                # Detect over-duration resources and delete
-				if self.resources[n].isExist() == 0:
-					print("Resource at (" + str(self.resources[n].row+1) + \
-					 "," + str(self.resources[n].col+1) + ") exceeds the duration. Removed")
-					self.space.delete(self.resources[n].resource)
-					self.resourceNum -= 1
-					self.resources[n] = 0
 
 		"""
 		Release resource at a random location of the world each year if total number of

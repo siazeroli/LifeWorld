@@ -8,6 +8,8 @@ class Creature(object):
 	power = 10
 	moveScope = 1
 	visionScope = 2
+	creatureVision = []
+	resourceVision = []
 
 	"""
 	Constructor to create the creature at certain position of the world
@@ -79,19 +81,28 @@ class Creature(object):
 			  self.y1 = y1old
 			  self.x2 = x2old
 			  self.y2 = y2old
-			  self.hp -= 10
+			  self.hp -= 5
 			  if self.isAlive() == 0:
 				  print("Creature " + self.name + " died because of escaping from the world")
 		  else:
 			  self.row = self.row + horizontalMove * self.moveScope
 			  self.col = self.col + verticalMove * self.moveScope
 			  canvas.coords(self.creature,self.x1,self.y1,self.x2,self.y2)
-			  self.hp -= 5
+			  self.hp -= 2
 			  if self.isAlive() == 0:
 				  print("Creature " + self.name + " died on the way to move")
 			  self.levelUp()
 			  break
-		self.world.after(delay, lambda: self.move(delay,canvas)) 
+		self.world.after(delay, lambda: self.move(delay,canvas))
+
+	"""	
+	def view(self,clist,rlist):
+		
+		for ckey in clist:
+			if clist[ckey] != 0 and clist[ckey].isAlive() == 1 and self.name != clist[ckey].name:
+	"""
+
+
 
 	def levelUp(self):
 	  self.experience += 10
@@ -103,7 +114,7 @@ class Creature(object):
 	  if self.level % 10 == 0:
 	  	if self.moveScope < 5:
 	  	  self.moveScope += 1
-	  	if self.visionScope < 10:
+	  	if self.visionScope < 6:
 	  	  self.visionScope += 1
 
 	def isAlive(self):
