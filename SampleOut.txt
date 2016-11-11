@@ -2,17 +2,19 @@
 Current year/month: 1/1
 
 Current year/month: 1/2
-Creature nums: 1
-e is born at (178,28)
 
 Current year/month: 1/3
-Creature nums: 2
-q is born at (23,81)
+Creature nums: 1
+b is born at (163,152)
 
 Current year/month: 1/4
+Creature nums: 2
+p is born at (48,99)
 
 Current year/month: 1/5
-Creature nums: 3
-k is born at (89,140)
 
 Current year/month: 1/6
+Creature nums: 3
+q is born at (155,164)
+
+Current year/month: 1/7
