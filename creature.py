@@ -91,23 +91,38 @@ class Creature(object):
 			  self.hp -= 2
 			  if self.isAlive() == 0:
 				  print("Creature " + self.name + " died on the way to move")
-			  self.levelUp()
+			  else:
+			      self.levelUp()
 			  break
 		self.world.after(delay, lambda: self.move(delay,canvas))
 
 	"""	
+	View method: Creature can view and detect around the world in the vision scope.
+	             Vision knowledge of creature may help it decide how to choose next move.
+	input: clist: creature list in the world (use to compare with location of this creature)
+	       rlist: resource list in the world (use to compare with location of this creature)
 	"""
 	def view(self,clist,rlist):
 		
 		for ckey in clist:
 			if clist[ckey] != 0 and clist[ckey].isAlive() == 1 and \
 			   self.name != clist[ckey].name and \
-			   abs(clist[ckey].row - self.row) > 0 and \
+			   abs(clist[ckey].row - self.row) >= 0 and \
 			   abs(clist[ckey].row - self.row) <= self.visionScope and \
-			   abs(clist[ckey].col - self.col) > 0 and \
+			   abs(clist[ckey].col - self.col) >= 0 and \
 			   abs(clist[ckey].col - self.col) <= self.visionScope:
-			     return
+			     print("Creature " + str(self.name) + " detect creture " + str(clist[ckey].name))
+			     self.creatureVision.append(clist[ckey])
+		
 
+		for rkey in rlist:
+			if rlist[rkey] != 0 and \
+			   abs(rlist[rkey].row - self.row) >= 0 and \
+			   abs(rlist[rkey].row - self.row) <= self.visionScope and \
+			   abs(rlist[rkey].col - self.col) >= 0 and \
+			   abs(rlist[rkey].col - self.col) <= self.visionScope:
+			     print("Creature " + str(self.name) + " detect resource.")
+			     self.resourceVision.append(rlist[rkey])
 
 
 	def levelUp(self):

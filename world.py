@@ -87,6 +87,20 @@ class World(object):
 				resourceRowList.append(self.resources[n].row)
 				resourceColList.append(self.resources[n].col)
 
+		print("Creature nums: " + str(self.creatureNum))
+
+		if self.creatureNum == self.maxCreatureNum:
+			print("Creatures full")
+
+		print("Resource nums: " + str(self.resourceNum))
+
+		if self.resourceNum == self.maxResourceNum:
+			print("Resources full")
+		
+		for n in self.creatures:
+			if self.creatures[n] != 0:
+				self.creatures[n].view(self.creatures,self.resources)
+
 		"""
 		Release resource at a random location of the world each year if total number of
 		resources are not larger than the allowable amount.
@@ -113,7 +127,6 @@ class World(object):
 					self.resources[key] = curResource
 					break
 				
-			print("Resource nums: " + str(self.resourceNum))
 			print("New Resource is released at (" + str(randResourceRow+1) + "," + str(randResourceCol+1) + ")")
 		elif self.resourceNum >= self.maxResourceNum and self.month == 1 and self.year != 1:
 			print("Cannot release more than " + str(self.maxResourceNum) + " resources.")
@@ -126,7 +139,7 @@ class World(object):
 		bornProb = random.random()
 		bornThreshold = random.random()
 
-		if self.creatureNum < self.maxCreatureNum and bornProb > bornThreshold:
+		if self.creatureNum < self.maxCreatureNum and bornProb >= bornThreshold:
 
             # Randomize location for new-born creature at non-occupied location
 			# In version 1.0, new-born creature cannot be at occupied location (no birth competition now)
@@ -156,11 +169,11 @@ class World(object):
 			# Let new-born creature move
 			curCreature.move(1000,self.space)
 
-			print("Creature nums: " + str(self.creatureNum))
 			print(curName + " is born at (" + str(randCreatureRow+1) + "," + str(randCreatureCol+1) + ")")
-
-		if self.creatureNum == self.maxCreatureNum:
-			print("lives full")
+		elif self.creatureNum >= self.maxCreatureNum:
+			print("Cannot exist more than " + str(self.maxCreatureNum) + " creatures.")
+		elif bornProb < bornThreshold:
+			print("Born probability is too low to give birth to a new creature")
 
         # Keep the world runing
 		self.world.after(delay, lambda: self.runWorld(delay))

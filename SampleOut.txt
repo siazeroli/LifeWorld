@@ -1,22 +1,10 @@
 
 Current year/month: 1/1
+Creature nums: 0
+Resource nums: 0
+o is born at (134,152)
 
 Current year/month: 1/2
-
-Current year/month: 1/3
-
-Current year/month: 1/4
 Creature nums: 1
-h is born at (85,92)
-
-Current year/month: 1/5
-
-Current year/month: 1/6
-
-Current year/month: 1/7
-Creature nums: 2
-t is born at (29,28)
-
-Current year/month: 1/8
-
-Current year/month: 1/9
+Resource nums: 0
+a is born at (153,184)
