@@ -103,6 +103,9 @@ class Creature(object):
 	       rlist: resource list in the world (use to compare with location of this creature)
 	"""
 	def view(self,clist,rlist):
+
+		self.creatureVision = []
+		self.resourceVision = []
 		
 		for ckey in clist:
 			if clist[ckey] != 0 and clist[ckey].isAlive() == 1 and \
